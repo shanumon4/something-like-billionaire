@@ -1,0 +1,16 @@
+{
+  "name": "billionaire",
+  "version": "0.0.1",
+  "private": true,
+  
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "~4.13.1",
+	"mongodb":"latest"
+  },
+  "description": "Billionaire Application",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "None",
+  "license": "ISC"
+}
