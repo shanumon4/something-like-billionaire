@@ -1,0 +1,113 @@
+2016-01-11T20:10:08.725+0530 I CONTROL  Trying to start Windows service 'MongoDB'
+2016-01-11T20:10:08.727+0530 I STORAGE  Service running
+2016-01-11T20:10:08.763+0530 W -        [initandlisten] Detected unclean shutdown - D:\Shanu\Tut\HeroKu\data\mongod.lock is not empty.
+2016-01-11T20:10:09.406+0530 I JOURNAL  [initandlisten] journal dir=D:\Shanu\Tut\HeroKu\data\journal
+2016-01-11T20:10:09.452+0530 I JOURNAL  [initandlisten] recover begin
+2016-01-11T20:10:09.925+0530 I JOURNAL  [initandlisten] recover lsn: 173402186
+2016-01-11T20:10:09.926+0530 I JOURNAL  [initandlisten] recover D:\Shanu\Tut\HeroKu\data\journal\j._0
+2016-01-11T20:10:10.137+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:0 < lsn:173402186
+2016-01-11T20:10:10.137+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:98465909 < lsn:173402186
+2016-01-11T20:10:10.137+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:98639854 < lsn:173402186
+2016-01-11T20:10:10.138+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:98755926 < lsn:173402186
+2016-01-11T20:10:10.138+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:98930043 < lsn:173402186
+2016-01-11T20:10:10.138+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:98988040 < lsn:173402186
+2016-01-11T20:10:10.140+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:99104115 < lsn:173402186
+2016-01-11T20:10:10.140+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:99162310 < lsn:173402186
+2016-01-11T20:10:10.140+0530 I JOURNAL  [initandlisten] recover skipping application of section seq:99220322 < lsn:173402186
+2016-01-11T20:10:10.140+0530 I JOURNAL  [initandlisten] recover skipping application of section more...
+2016-01-11T20:10:11.906+0530 I JOURNAL  [initandlisten] recover cleaning up
+2016-01-11T20:10:11.907+0530 I JOURNAL  [initandlisten] removeJournalFiles
+2016-01-11T20:10:11.916+0530 I JOURNAL  [initandlisten] recover done
+2016-01-11T20:10:13.085+0530 I JOURNAL  [durability] Durability thread started
+2016-01-11T20:10:13.102+0530 I JOURNAL  [journal writer] Journal writer thread started
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] MongoDB starting : pid=2464 port=27017 dbpath=D:\Shanu\Tut\HeroKu\data 64-bit host=SIPLLT1271
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] db version v3.0.6
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] git version: 1ef45a23a4c5e3480ac919b28afcba3c615488f2
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] build info: windows sys.getwindowsversion(major=6, minor=1, build=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-01-11T20:10:13.360+0530 I CONTROL  [initandlisten] options: { service: true, storage: { dbPath: "D:\Shanu\Tut\HeroKu\data" }, systemLog: { destination: "file", path: "D:\Shanu\Tut\HeroKu\data\log.txt" } }
+2016-01-11T20:10:20.810+0530 I QUERY    [initandlisten] query admin.system.roles planSummary: EOF ntoreturn:0 ntoskip:0 nscanned:0 nscannedObjects:0 keyUpdates:0 writeConflicts:0 numYields:0 nreturned:0 reslen:20 locks:{ Global: { acquireCount: { r: 2 } }, MMAPV1Journal: { acquireCount: { r: 1 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { R: 1 } } } 181ms
+2016-01-11T20:10:20.936+0530 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-01-11T22:52:03.742+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:46258 #1 (1 connection now open)
+2016-01-11T22:52:03.742+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:46259 #2 (2 connections now open)
+2016-01-11T22:52:03.742+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:46260 #3 (3 connections now open)
+2016-01-11T22:52:03.742+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:46261 #4 (4 connections now open)
+2016-01-11T22:52:03.742+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:46262 #5 (5 connections now open)
+2016-01-11T23:58:24.745+0530 I NETWORK  [conn5] end connection 127.0.0.1:46262 (4 connections now open)
+2016-01-11T23:58:24.745+0530 I NETWORK  [conn4] end connection 127.0.0.1:46261 (4 connections now open)
+2016-01-11T23:58:24.745+0530 I NETWORK  [conn2] end connection 127.0.0.1:46259 (4 connections now open)
+2016-01-11T23:58:24.745+0530 I NETWORK  [conn1] end connection 127.0.0.1:46258 (4 connections now open)
+2016-01-11T23:58:24.745+0530 I NETWORK  [conn3] end connection 127.0.0.1:46260 (4 connections now open)
+2016-01-11T23:58:26.541+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47061 #6 (1 connection now open)
+2016-01-11T23:58:26.541+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47062 #7 (2 connections now open)
+2016-01-11T23:58:26.541+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47063 #8 (3 connections now open)
+2016-01-11T23:58:26.541+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47064 #9 (4 connections now open)
+2016-01-11T23:58:26.541+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47065 #10 (5 connections now open)
+2016-01-12T00:13:32.101+0530 I NETWORK  [conn6] end connection 127.0.0.1:47061 (4 connections now open)
+2016-01-12T00:13:32.101+0530 I NETWORK  [conn7] end connection 127.0.0.1:47062 (4 connections now open)
+2016-01-12T00:13:32.101+0530 I NETWORK  [conn8] end connection 127.0.0.1:47063 (4 connections now open)
+2016-01-12T00:13:32.101+0530 I NETWORK  [conn9] end connection 127.0.0.1:47064 (4 connections now open)
+2016-01-12T00:13:32.101+0530 I NETWORK  [conn10] end connection 127.0.0.1:47065 (4 connections now open)
+2016-01-12T00:13:34.055+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47103 #11 (1 connection now open)
+2016-01-12T00:13:34.055+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47104 #12 (2 connections now open)
+2016-01-12T00:13:34.056+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47105 #13 (3 connections now open)
+2016-01-12T00:13:34.056+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47106 #14 (4 connections now open)
+2016-01-12T00:13:34.056+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47107 #15 (5 connections now open)
+2016-01-12T00:15:09.141+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47113 #16 (6 connections now open)
+2016-01-12T00:15:09.174+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47114 #17 (7 connections now open)
+2016-01-12T00:15:20.403+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47117 #18 (8 connections now open)
+2016-01-12T00:15:20.415+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47118 #19 (9 connections now open)
+2016-01-12T00:20:17.092+0530 I NETWORK  [conn11] end connection 127.0.0.1:47103 (8 connections now open)
+2016-01-12T00:20:17.092+0530 I NETWORK  [conn12] end connection 127.0.0.1:47104 (8 connections now open)
+2016-01-12T00:20:17.092+0530 I NETWORK  [conn13] end connection 127.0.0.1:47105 (8 connections now open)
+2016-01-12T00:20:17.093+0530 I NETWORK  [conn14] end connection 127.0.0.1:47106 (8 connections now open)
+2016-01-12T00:20:17.093+0530 I NETWORK  [conn15] end connection 127.0.0.1:47107 (8 connections now open)
+2016-01-12T00:20:19.266+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47132 #20 (5 connections now open)
+2016-01-12T00:20:19.266+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47133 #21 (6 connections now open)
+2016-01-12T00:20:19.266+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47134 #22 (7 connections now open)
+2016-01-12T00:20:19.266+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47135 #23 (8 connections now open)
+2016-01-12T00:20:19.266+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47136 #24 (9 connections now open)
+2016-01-12T00:21:49.181+0530 I NETWORK  [conn21] end connection 127.0.0.1:47133 (8 connections now open)
+2016-01-12T00:21:49.181+0530 I NETWORK  [conn20] end connection 127.0.0.1:47132 (8 connections now open)
+2016-01-12T00:21:49.181+0530 I NETWORK  [conn23] end connection 127.0.0.1:47135 (8 connections now open)
+2016-01-12T00:21:49.181+0530 I NETWORK  [conn22] end connection 127.0.0.1:47134 (8 connections now open)
+2016-01-12T00:21:49.181+0530 I NETWORK  [conn24] end connection 127.0.0.1:47136 (8 connections now open)
+2016-01-12T00:21:53.442+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47143 #25 (5 connections now open)
+2016-01-12T00:21:53.443+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47144 #26 (6 connections now open)
+2016-01-12T00:21:53.443+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47145 #27 (7 connections now open)
+2016-01-12T00:21:53.443+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47146 #28 (8 connections now open)
+2016-01-12T00:21:53.443+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:47147 #29 (9 connections now open)
+2016-01-12T10:43:26.719+0530 I NETWORK  [conn27] end connection 127.0.0.1:47145 (8 connections now open)
+2016-01-12T10:43:26.719+0530 I NETWORK  [conn29] end connection 127.0.0.1:47147 (8 connections now open)
+2016-01-12T10:43:26.719+0530 I NETWORK  [conn28] end connection 127.0.0.1:47146 (8 connections now open)
+2016-01-12T10:43:26.730+0530 I NETWORK  [conn26] end connection 127.0.0.1:47144 (5 connections now open)
+2016-01-12T10:43:26.731+0530 I NETWORK  [conn25] end connection 127.0.0.1:47143 (4 connections now open)
+2016-01-12T22:52:32.355+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10333 #30 (5 connections now open)
+2016-01-12T22:52:32.355+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10334 #31 (6 connections now open)
+2016-01-12T22:52:32.355+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10335 #32 (7 connections now open)
+2016-01-12T22:52:32.356+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10336 #33 (8 connections now open)
+2016-01-12T22:52:32.356+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10337 #34 (9 connections now open)
+2016-01-12T23:23:08.730+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10806 #35 (10 connections now open)
+2016-01-12T23:23:08.811+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10807 #36 (11 connections now open)
+2016-01-12T23:23:20.943+0530 I NETWORK  [conn36] end connection 127.0.0.1:10807 (10 connections now open)
+2016-01-12T23:23:20.944+0530 I NETWORK  [conn35] end connection 127.0.0.1:10806 (9 connections now open)
+2016-01-12T23:23:30.617+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10810 #37 (10 connections now open)
+2016-01-12T23:23:30.633+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10811 #38 (11 connections now open)
+2016-01-12T23:23:30.789+0530 I COMMAND  [conn37] command admin.$cmd command: serverStatus { serverStatus: 1.0 } keyUpdates:0 writeConflicts:0 numYields:0 reslen:10122 locks:{} 131ms
+2016-01-12T23:24:49.539+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10814 #39 (12 connections now open)
+2016-01-12T23:24:49.555+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10815 #40 (13 connections now open)
+2016-01-12T23:29:22.529+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10859 #41 (14 connections now open)
+2016-01-12T23:29:22.545+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10860 #42 (15 connections now open)
+2016-01-12T23:30:59.623+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10865 #43 (16 connections now open)
+2016-01-12T23:30:59.641+0530 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10866 #44 (17 connections now open)
+2016-01-12T23:31:03.592+0530 I NETWORK  [conn19] end connection 127.0.0.1:47118 (16 connections now open)
+2016-01-12T23:31:03.596+0530 I NETWORK  [conn18] end connection 127.0.0.1:47117 (15 connections now open)
+2016-01-12T23:31:04.841+0530 I NETWORK  [conn40] end connection 127.0.0.1:10815 (14 connections now open)
+2016-01-12T23:31:04.842+0530 I NETWORK  [conn39] end connection 127.0.0.1:10814 (13 connections now open)
+2016-01-12T23:31:05.788+0530 I NETWORK  [conn42] end connection 127.0.0.1:10860 (12 connections now open)
+2016-01-12T23:31:05.790+0530 I NETWORK  [conn41] end connection 127.0.0.1:10859 (11 connections now open)
+2016-01-12T23:31:06.450+0530 I NETWORK  [conn44] end connection 127.0.0.1:10866 (10 connections now open)
+2016-01-12T23:31:06.451+0530 I NETWORK  [conn43] end connection 127.0.0.1:10865 (9 connections now open)
+2016-01-12T23:31:08.012+0530 I NETWORK  [conn38] end connection 127.0.0.1:10811 (8 connections now open)
+2016-01-12T23:31:08.014+0530 I NETWORK  [conn37] end connection 127.0.0.1:10810 (7 connections now open)
