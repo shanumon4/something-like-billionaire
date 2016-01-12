@@ -8,7 +8,7 @@
         },
         control: {
             'orderForm textfield': {
-                change: 'onkeyup4d'
+               // keyup: 'onkeyup4d'
             },
             'button[action=add4dField]': {
                 tap:'onAdd4DField'
@@ -20,10 +20,7 @@
     },
 
     onkeyup4d: function (f, e, t, y) {
-        this.calculateTotal();
-
-        f.removeCls('textfield_invalid');
-        f.up('fieldset').setInstructions('');
+        
         //var val = f.getValue();
         //if (e.event.keyCode == 8) { //Backspace
         //    if (val.length == 11 || val.length == 7)
@@ -37,7 +34,7 @@
     },
 
     onAdd4DField: function () {
-        var orderForm = this.getOrderForm(),
+        var orderForm = Ext.getCmp('orderForm'),
             fs = orderForm.down('fieldset[action=4dfieldset]'),
             fourdfield = {
                 xtype: 'textfield',
@@ -55,9 +52,9 @@
 
     onSubmitOrderForm: function () {
         
-        var vals = this.getOrderForm().getValues();
-        var isValidTickets = this.validateTickets(vals);
-        if (isValidTickets) {
+        var vals = Ext.getCmp('orderForm').getValues();
+        var isValidTickets = this.validateTickets(vals) ? true : false;
+        if (isValidTickets == true) {
             var all4Darray = vals.FourDNumber.map(function (obj) {
                 var newObj = {};
                 var splittedNo = obj.split('-');
@@ -101,7 +98,7 @@
                             height: options.scope.getOrderForm().el.getHeight() - 10,
                             fullscreen: true,
                             modal: true,
-                            renderTo: this.getOrderForm().id,
+                            renderTo: Ext.getCmp('orderForm').id,
                             items: [{
                                 xtype: 'textareafield',
                                 width: '100%',
@@ -113,7 +110,7 @@
                 }
             });
         }
-        //Ext.Msg.alert('Alert', JSON.stringify(this.getOrderForm().getValues()));
+        //Ext.Msg.alert('Alert', JSON.stringify(Ext.getCmp('orderForm').getValues()));
     },
 
     getCompaniesFromValues: function (values) {
@@ -158,7 +155,7 @@
         if (!isValid) {
             for (var j = 0; j < errors.length; j++) {
                 for (var i = 0; i < errors[j].items.length; i++) {
-                    var field = this.getOrderForm().getFields(errors[j].items[i].getField());
+                    var field = Ext.getCmp('orderForm').getFields(errors[j].items[i].getField());
                     if (Ext.isArray(field)) {
                         field[j].addCls('textfield_invalid');
                         field[j].up('fieldset').setInstructions('<span style ="color:red;"><i>' + errors[j].items[i].getMessage() + '<i></span>');
@@ -174,7 +171,7 @@
     },
 
     calculateTotal: function () {
-        var form = this.getOrderForm().getValues(),
+        var form = Ext.getCmp('orderForm').getValues(),
             fourDNumbers = form.FourDNumber,
             total = 0;
         for (var i = 0; i < fourDNumbers.length; i++) {
@@ -185,6 +182,10 @@
             }
         }
         Ext.getCmp('totalDisplay').setTotal(total.toFixed(2));
+    },
+
+    init: function () {
+        this.callParent();
     }
 });
     

@@ -1,8 +1,14 @@
 ﻿Ext.define('Billionaire.view.OrderForm', {
     extend: 'Ext.form.FormPanel',
     xtype: 'orderForm',
+    id:'orderForm',
     requires: ['Ext.form.FieldSet'],
     config: {
+        control: {
+            'textfield': {
+                keyup: 'calculateTotal'
+            }
+        },
         items: [{
             xtype: 'fieldset',
             styleHtmlContent: true,
@@ -121,5 +127,22 @@
                 this.innerHtmlElement.setText('Total Amount: ' + value);
             }
         }]
+    },
+    
+    calculateTotal: function (f) {
+        var form = Ext.getCmp('orderForm').getValues(),
+            fourDNumbers = form.FourDNumber,
+            total = 0;
+        for (var i = 0; i < fourDNumbers.length; i++) {
+            var splittedValue = fourDNumbers[i].split('-');
+            if (splittedValue.length > 1) {
+                total += parseInt(splittedValue[1]) ? parseInt(splittedValue[1]) : 0;
+                total += parseInt(splittedValue[2]) ? parseInt(splittedValue[2]) : 0;
+            }
+        }
+        Ext.getCmp('totalDisplay').setTotal(total.toFixed(2));
+
+        f.removeCls('textfield_invalid');
+        f.up('fieldset').setInstructions('');
     }
 });
