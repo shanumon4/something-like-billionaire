@@ -86,25 +86,30 @@
                 scope: this,
                 callback: function (options, success, response) {
                     if (success) {
-                        Ext.create('Ext.Panel', {
-                            html: '<div class="orderconfirm_title">Order confirmed</div>',
-                            left: options.scope.getOrderForm().el.getX() + 5,
-                            top: options.scope.getOrderForm().el.getY() + 5,
-                            //top:5,
-                            //padding: 10,
-                            //margin: '5 5 5 5',
-                            floatingCls: 'orderconfirm_floatingCls',
-                            width: options.scope.getOrderForm().el.getWidth() - 10,
-                            height: options.scope.getOrderForm().el.getHeight() - 10,
-                            fullscreen: true,
-                            modal: true,
-                            renderTo: Ext.getCmp('orderForm').id,
-                            items: [{
-                                xtype: 'textareafield',
-                                width: '100%',
-                                value: response.responseText
-                            }]
-                        }).show();
+                        try {
+                            Ext.create('Ext.Panel', {
+                                html: '<div class="orderconfirm_title">Order confirmed</div>',
+                                left: options.scope.getOrderForm().el.getX() + 5,
+                                top: options.scope.getOrderForm().el.getY() + 5,
+                                //top:5,
+                                //padding: 10,
+                                //margin: '5 5 5 5',
+                                floatingCls: 'orderconfirm_floatingCls',
+                                width: options.scope.getOrderForm().el.getWidth() - 10,
+                                height: options.scope.getOrderForm().el.getHeight() - 10,
+                                fullscreen: true,
+                                modal: true,
+                                renderTo: Ext.getCmp('orderForm').id,
+                                items: [{
+                                    xtype: 'textareafield',
+                                    width: '100%',
+                                    value: response.responseText
+                                }]
+                            }).show();
+                        }
+                        catch (err) {
+                            Ext.Msg.alert('Error', err.message);
+                        }
                     }
                     //console.log(response.responseText);
                 }
