@@ -130,9 +130,11 @@
     },
     
     calculateTotal: function (f) {
+		
         var form = Ext.getCmp('orderForm').getValues(),
             fourDNumbers = form.FourDNumber,
             total = 0;
+			Ext.Msg.alert('tap','tap event called'+fourDNumbers);
         for (var i = 0; i < fourDNumbers.length; i++) {
             var splittedValue = fourDNumbers[i].split('-');
             if (splittedValue.length > 1) {

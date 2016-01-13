@@ -8,7 +8,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.bill.billioaire"
+            "PACKAGE_NAME": "com.shanu.Billionaire"
         }
     },
     "dependent_plugins": {}
