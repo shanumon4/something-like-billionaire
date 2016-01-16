@@ -6,7 +6,7 @@
     config: {
         styleHtmlContent: true,
         layout: { type: 'auto' },
-        url: 'http://192.168.0.103:3030/login',
+        url: '/login',
 
         items: [{
             docked: 'top',

@@ -45,13 +45,12 @@
                 minLength: 4,
                 component: { type: 'tel' }
             };
-
-        var newField = fs.add(fourdfield);
+        var newField = fs.insert(fs.items.length - 2, fourdfield);
         newField.focus();
     },
 
     onSubmitOrderForm: function () {
-        
+
         var vals = Ext.getCmp('orderForm').getValues();
         var isValidTickets = this.validateTickets(vals) ? true : false;
         if (isValidTickets == true) {
@@ -73,47 +72,42 @@
                 return items;
             });
 
-            Ext.Ajax.request({
-                url: '/addTicket',
-                method: 'POST',
-                //disableCaching: false,
-                //headers: {
-                //    "Content-Type": "application/json"
-                //},
-                params: {
-                    formData: JSON.stringify(formValuesArr)
-                },
-                scope: this,
-                callback: function (options, success, response) {
-                    if (success) {
-                        try {
-                            Ext.create('Ext.Panel', {
-                                html: '<div class="orderconfirm_title">Order confirmed</div>',
-                                left: options.scope.getOrderForm().el.getX() + 5,
-                                top: options.scope.getOrderForm().el.getY() + 5,
-                                //top:5,
-                                //padding: 10,
-                                //margin: '5 5 5 5',
-                                floatingCls: 'orderconfirm_floatingCls',
-                                width: this.scope.getOrderForm().el.getWidth() - 10,
-                                height: options.scope.getOrderForm().el.getHeight() - 10,
-                                fullscreen: true,
-                                modal: true,
-                                renderTo: Ext.getCmp('orderForm').id,
-                                items: [{
-                                    xtype: 'textareafield',
-                                    width: '100%',
-                                    value: response.responseText
-                                }]
-                            }).show();
-                        }
-                        catch (err) {
-                            Ext.Msg.alert('Error', err.message);
-                        }
-                    }
-                    //console.log(response.responseText);
-                }
-            });
+           
+         Ext.Ajax.request({
+             url: '/addTicket',
+             method: 'POST',
+             //disableCaching: false,
+             //headers: {
+             //    "Content-Type": "application/json"
+             //},
+             params: {
+                 formData: JSON.stringify(formValuesArr)
+             },
+             scope: this,
+             callback: function (options, success, response) {
+                 if (success) {
+                     try {
+                         var conf = Ext.create('Billionaire.view.OrderConfirmationPopup', {
+                             left: options.scope.getOrderForm().element.getX() + 5,
+                             top: options.scope.getOrderForm().element.getY() + 5,
+                             width: options.scope.getOrderForm().element.getWidth() - 10,
+                             height: options.scope.getOrderForm().element.getHeight() - 10,
+                             renderTo: Ext.getCmp('orderForm').id,
+                             confTitle: 1,
+                             phoneNumber: vals.PhoneNumber,
+                             bodyMsg: '#' + vals.FourDNumber[0] + '\n' + '#' + vals.FourDNumber[1] + '\n\n' + 'C: ' + '\n\n' + 'T: 34' + '\n\n Ph:' + vals.PhoneNumber,
+                         });
+                         conf.updatePopup(conf);
+                         conf.show();
+                         options.scope.getOrderForm().reset();
+                     }
+                     catch (err) {
+                         Ext.Msg.alert('Error', err.message);
+                     }
+                 }
+                 //console.log(response.responseText);
+             }
+         });
         }
         //Ext.Msg.alert('Alert', JSON.stringify(Ext.getCmp('orderForm').getValues()));
     },

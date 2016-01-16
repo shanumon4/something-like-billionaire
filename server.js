@@ -115,3 +115,25 @@ app.post('/addTicket', function (req, res) {
     //});
 
 });
+
+
+app.post('/lsorders', function (req, res) {
+    res.header('Access-Control-Allow-Origin', "*");
+    var params= {};
+    if (req.body['mode'] == 1) {   // Quick free search
+        params['PhoneNumber'] = '/.*' + req.body['value'] +'.*/';
+        params['FourDNumber'] = '/.*' + req.body['value'] +'.*/';
+    }
+    //$or: [{ '_id': objId }, { 'name': param }, { 'nickname': param }]
+    mongoose.model('Tickets').find({ $or: [params] }, function (err, orders) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+        if (!orders) {
+            return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Failed to load", "success": true }));
+        }
+        
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: orders }));
+    });
+});

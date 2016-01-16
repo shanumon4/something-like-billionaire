@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'Main', 'Login', 'OrderForm'
+        'Main', 'Login', 'OrderForm', 'OrderConfirmationPopup'
     ],
     controllers:['LoginController','OrderFormController'],
     models: ['Tickets'],

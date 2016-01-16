@@ -76,17 +76,21 @@
                 minLength: 4,
                 placeHolder: '#### - ### - ###',
                 component: { type: 'tel' }
+            }, {
+                xtype: 'button',
+                iconCls: 'add',
+                action: 'add4dField',
+                docked: 'bottom',
+                width: '20%',
+                margin:'10 0 0 0',
+                style: { left: '80%' }
             }]
-        },{
-            xtype: 'button',
-            iconCls: 'add',
-            action: 'add4dField',
-            width: '20%'
         }, {
             xtype: 'fieldset',
             styleHtmlContent: true,
             title: 'Company',
             layout: 'hbox',
+            //margin:'35 0 0 0',
             defaultType: 'checkboxfield',
             items: [{
                 name: 'M',

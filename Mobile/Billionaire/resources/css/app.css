@@ -7736,3 +7736,12 @@ body.x-desktop {
     border-radius: 11px;
     border: 2px solid darkcyan;
 }
+
+.orderconfirm_SendSMS {
+    background-image:url('../icons/forward_black.png')!important;
+    width:30px!important; 
+    height:30px!important; 
+    background-repeat:no-repeat; 
+    background-position:center center;
+}
+
