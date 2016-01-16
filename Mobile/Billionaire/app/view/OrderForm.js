@@ -2,7 +2,7 @@
     extend: 'Ext.form.FormPanel',
     xtype: 'orderForm',
     id:'orderForm',
-    requires: ['Ext.form.FieldSet'],
+    requires: ['Ext.form.FieldSet',],
     config: {
         control: {
             'textfield': {
@@ -124,7 +124,7 @@
             id:'totalDisplay',
             html: 'Total Amount: 0.00',
             setTotal: function (value) {
-                this.innerHtmlElement.setText('Total Amount: ' + value);
+                Ext.getCmp('totalDisplay').setHtml('Total Amount: ' + value);
             }
         }]
     },
