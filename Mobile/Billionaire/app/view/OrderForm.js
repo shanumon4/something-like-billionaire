@@ -130,6 +130,7 @@
     },
     
     calculateTotal: function (f) {
+		
         var form = Ext.getCmp('orderForm').getValues(),
             fourDNumbers = form.FourDNumber,
             total = 0;

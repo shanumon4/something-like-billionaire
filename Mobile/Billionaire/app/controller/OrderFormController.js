@@ -95,7 +95,7 @@
                                 //padding: 10,
                                 //margin: '5 5 5 5',
                                 floatingCls: 'orderconfirm_floatingCls',
-                                width: options.scope.getOrderForm().el.getWidth() - 10,
+                                width: this.scope.getOrderForm().el.getWidth() - 10,
                                 height: options.scope.getOrderForm().el.getHeight() - 10,
                                 fullscreen: true,
                                 modal: true,
@@ -172,6 +172,7 @@
                 }
             }
         }
+		
         return isValid;
     },
 

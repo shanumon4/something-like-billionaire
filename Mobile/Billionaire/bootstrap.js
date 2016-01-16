@@ -39,6 +39,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Billionaire.controller.LoginController": [],
   "Billionaire.controller.OrderFormController": [],
   "Billionaire.model.Tickets": [],
+  "Billionaire.util.Config": [],
   "Billionaire.view.Login": [],
   "Billionaire.view.Main": [],
   "Billionaire.view.OrderForm": [],
@@ -669,6 +670,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Billionaire.controller.LoginController": [],
   "Billionaire.controller.OrderFormController": [],
   "Billionaire.model.Tickets": [],
+  "Billionaire.util.Config": [],
   "Billionaire.view.Login": [
     "widget.loginView"
   ],
