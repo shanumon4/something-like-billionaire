@@ -74,7 +74,7 @@
 
            
          Ext.Ajax.request({
-             url: 'http://192.168.0.102:3030/addTicket',
+             url: Billionaire.util.Config.getBaseUrl() + '/addTicket',
              method: 'POST',
              //disableCaching: false,
              //headers: {

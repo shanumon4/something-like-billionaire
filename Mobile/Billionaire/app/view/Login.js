@@ -2,11 +2,11 @@
     extend: 'Ext.form.Panel',
     xtype: 'loginView',
     fullscreen: true,
-    requires: ['Ext.form.FieldSet'],
+    requires: ['Ext.form.FieldSet','Billionaire.util.Config'],
     config: {
         styleHtmlContent: true,
         layout: { type: 'auto' },
-        url: 'http://192.168.0.102:3030/login',
+        url: Billionaire.util.Config.getBaseUrl() + '/login',
 
         items: [{
             docked: 'top',

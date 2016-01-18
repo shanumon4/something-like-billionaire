@@ -3,10 +3,11 @@
     model: 'Billionaire.model.Tickets',
     proxy: {
         type: "ajax",
-        url: "http://192.168.0.102:3030/lsorders",
+        url: Billionaire.util.Config.getBaseUrl() + "/lsorders",
         reader: {
             type: "json",
-            rootProperty: "data"
+            rootProperty: "data",
+            idProperty:'_id'
         }
     },
     autoLoad: true

@@ -14,7 +14,7 @@ Ext.application({
     name: 'Billionaire',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox','Billionaire.util.Config'
     ],
 
     views: [
