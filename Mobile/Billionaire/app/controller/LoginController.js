@@ -11,19 +11,22 @@ Ext.define('Billionaire.controller.LoginController', {
                 tap: 'onLogin'
             },
             'loginView': {
-                submit:'onLoginComplete'
+                submit: 'onLoginComplete'
             }
         }
     },
-    
+
     onLogin: function (btn) {
         var form = this.getLoginForm(),
             values = form.getValues();
 
+        //form.on('beforesubmit', function (f, e, w) {
+        //    debugger;
+        //});
         if (values.username == "" || values.password == "")
             Ext.Msg.alert('Login', 'Please enter username & password.');
         else {
-            form.setValue('Device_Name', Ext.device.Device.name);
+           // form.setValue('Device_Name', Ext.device.Device.name);
 
             form.submit({
                 useDefaultXhrHeader: false,

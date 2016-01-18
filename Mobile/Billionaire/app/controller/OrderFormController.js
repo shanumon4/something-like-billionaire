@@ -16,6 +16,7 @@
             'button[action=submitOrderForm]': {
                 tap:'onSubmitOrderForm'
             }
+            
         }
     },
 
@@ -49,6 +50,7 @@
         newField.focus();
     },
 
+   
     onSubmitOrderForm: function () {
 
         var vals = Ext.getCmp('orderForm').getValues();

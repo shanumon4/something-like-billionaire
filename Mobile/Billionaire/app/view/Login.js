@@ -29,6 +29,19 @@
                     name: 'password',
                     label: 'Password',
                     allowBlank: false
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Device_Name',
+                    value: Ext.device.Device.name
+                }, {
+                    xtype: 'hiddenfield',
+                    name: 'Device_Platform',
+                    value: Ext.device.Device.platform
+                }, {
+                    xtype: 'hiddenfield',
+                    name: 'Device_UUID',
+                    value: Ext.device.Device.uuid
                 }
             ]
         }, {

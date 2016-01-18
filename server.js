@@ -3,9 +3,9 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -49,7 +49,12 @@ app.post('/login', function (req, res) {
 
     var username = req.body["username"];
     var password = req.body["password"];
-    console.log(username + '/n' + req.body['Device_Name']);
+    console.log([
+        'Device name: ' + req.body["Device_Name"],
+        'Device platform: ' + req.body["Device_Platform"],
+        'Device UUID: ' + req.body["Device_UUID"],
+        'Username: ' + username
+    ].join('\n'));
     mongoose.model('Users').findOne({ Username: username, Password: password }, function (err, user) {
         if (err) {
             console.log(err);
