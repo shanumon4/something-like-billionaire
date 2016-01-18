@@ -7,7 +7,8 @@
 	{name:'_id', type:'int'},
     { name: 'FourDNumber', type: 'string' },
 { name: 'Company',type:'auto' },
-{ name: 'PhoneNumber', type: 'string' }],
+{ name: 'PhoneNumber', type: 'string' },
+    {name:'CreatedOn',type:'date'}],
     validations: [
         { type: 'presence', name: 'FourDNumber', message: "Please enter 4D Number" },
         { type: 'presence', name: 'PhoneNumber', message: "Please enter Phone Number" },
