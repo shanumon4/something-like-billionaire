@@ -3,7 +3,7 @@
     model: 'Billionaire.model.Tickets',
     proxy: {
         type: "ajax",
-        url: "/lsorders",
+        url: "http://192.168.0.102:3030/lsorders",
         reader: {
             type: "json",
             rootProperty: "data"
