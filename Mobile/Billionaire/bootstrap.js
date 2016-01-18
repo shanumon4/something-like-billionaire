@@ -38,11 +38,15 @@ Ext.Loader.addClassPathMappings({
 Ext.ClassManager.addNameAlternateMappings({
   "Billionaire.controller.LoginController": [],
   "Billionaire.controller.OrderFormController": [],
+  "Billionaire.controller.OrderReportController": [],
   "Billionaire.model.Tickets": [],
+  "Billionaire.store.Orders": [],
   "Billionaire.util.Config": [],
   "Billionaire.view.Login": [],
   "Billionaire.view.Main": [],
+  "Billionaire.view.OrderConfirmationPopup": [],
   "Billionaire.view.OrderForm": [],
+  "Billionaire.view.OrdersReport": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -669,7 +673,9 @@ Ext.ClassManager.addNameAlternateMappings({
 Ext.ClassManager.addNameAliasMappings({
   "Billionaire.controller.LoginController": [],
   "Billionaire.controller.OrderFormController": [],
+  "Billionaire.controller.OrderReportController": [],
   "Billionaire.model.Tickets": [],
+  "Billionaire.store.Orders": [],
   "Billionaire.util.Config": [],
   "Billionaire.view.Login": [
     "widget.loginView"
@@ -677,8 +683,14 @@ Ext.ClassManager.addNameAliasMappings({
   "Billionaire.view.Main": [
     "widget.mainForm"
   ],
+  "Billionaire.view.OrderConfirmationPopup": [
+    "widget.orderConfirmationPopup"
+  ],
   "Billionaire.view.OrderForm": [
     "widget.orderForm"
+  ],
+  "Billionaire.view.OrdersReport": [
+    "widget.ordersReport"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
