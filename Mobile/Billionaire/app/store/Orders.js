@@ -6,9 +6,7 @@
         url: Billionaire.util.Config.getBaseUrl() + "/lsorders",
         reader: {
             type: "json",
-            rootProperty: "data",
-            idProperty:'_id'
+            rootProperty: "data"
         }
-    },
-    autoLoad: true
+    }
 });

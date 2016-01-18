@@ -153,7 +153,7 @@
         //        total += parseInt(splittedValue[2]) ? parseInt(splittedValue[2]) : 0;
         //    }
         //}
-        Ext.getCmp('totalDisplay').setTotal(total.toFixed(2));
+        Ext.getCmp('totalDisplay').setHtml('Total Amount: ' + total.toFixed(2));
 
         f.removeCls('textfield_invalid');
         f.up('fieldset').setInstructions('');

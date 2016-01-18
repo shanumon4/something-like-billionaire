@@ -17,12 +17,17 @@
     },
     onChangeTab: function (t, tab, newTab, d, e) {
         if (tab._title == "Reports") {
-            this.getOrderSearchField().reset();
-            this.getOrdersReportList().getStore().load();
+			try{
+            Ext.getCmp('ordersReportSearchField').reset();
+            Ext.getCmp('ordersReportList').getStore().load();
+			}
+			catch(err){
+			  Ext.Msg.alert('Error',err.message);
+			}
         }
     },
     onOrderSearchKeyUp: function (f) {
-        var orderlist = this.getOrdersReportList().getStore();
+        var orderlist = Ext.getCmp('ordersReportList').getStore();
         orderlist.getProxy().setExtraParam('simpleValue', f.getValue());
         orderlist.load();
     }

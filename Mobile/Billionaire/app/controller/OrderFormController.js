@@ -142,6 +142,7 @@
         }
 
         var errors = [];
+		try{
         for (var i = 0; i < formValuesArr.length; i++) {
             var tempModel = Ext.create('Billionaire.model.Tickets', formValuesArr[i]);
             if (!tempModel.isValid()) {
@@ -166,7 +167,10 @@
                 }
             }
         }
-		
+		}
+		catch(err){
+		Ext.Msg.alert('Error',err.message);
+		}
         return isValid;
     },
 

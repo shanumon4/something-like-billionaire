@@ -1,7 +1,10 @@
 ﻿Ext.define('Billionaire.model.Tickets', {
     extend: 'Ext.data.Model',
     id: 'Tickets',
+	config:{
+	idProperty:'_id',
     fields: [
+	{name:'_id', type:'int'},
     { name: 'FourDNumber', type: 'string' },
 { name: 'Company',type:'auto' },
 { name: 'PhoneNumber', type: 'string' }],
@@ -13,4 +16,5 @@
         //{ type: 'format', name: 'email', matcher: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, message: "Wrong Email Format" },
         //{ type: 'password', name: 'password' }
     ]
+	}
 });
