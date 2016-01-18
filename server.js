@@ -117,6 +117,7 @@ app.post('/addTicket', function (req, res) {
 });
 
 app.get('/lsorders', function (req, res) {
+    console.log('/lsorders req made');
     res.header('Access-Control-Allow-Origin', "*");
     var params = [];
     var searchQry = {};
