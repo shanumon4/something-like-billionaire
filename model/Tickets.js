@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ticketsSchema = new Schema({
     Id: { type: Number, ref:'Id' },
-    FourDNumber: { type: Number },
+    FourDNumber: { type: String },
     Sub1: String,
     Sub2: String,
     Company: Array,

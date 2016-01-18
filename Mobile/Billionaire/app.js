@@ -18,10 +18,11 @@ Ext.application({
     ],
 
     views: [
-        'Main', 'Login', 'OrderForm', 'OrderConfirmationPopup'
+        'Main', 'Login', 'OrderForm', 'OrderConfirmationPopup','OrdersReport'
     ],
-    controllers:['LoginController','OrderFormController'],
+    controllers:['LoginController','OrderFormController','OrderReportController'],
     models: ['Tickets'],
+    stores:['Orders'],
     utils:['Config'],
     icon: {
         '57': 'resources/icons/Icon.png',

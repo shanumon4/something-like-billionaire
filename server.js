@@ -116,16 +116,20 @@ app.post('/addTicket', function (req, res) {
 
 });
 
-
-app.post('/lsorders', function (req, res) {
+app.get('/lsorders', function (req, res) {
     res.header('Access-Control-Allow-Origin', "*");
-    var params= {};
-    if (req.body['mode'] == 1) {   // Quick free search
-        params['PhoneNumber'] = '/.*' + req.body['value'] +'.*/';
-        params['FourDNumber'] = '/.*' + req.body['value'] +'.*/';
+    var params = [];
+    var searchQry = {};
+    
+    if (req.query['simpleValue']) {   // Quick free search
+        params.push({ 'PhoneNumber' : new RegExp('.*' + req.query['simpleValue'] + '.*') });
+        params.push({ 'FourDNumber' : new RegExp('.*' + req.query['simpleValue'] + '.*') });
+
+        searchQry['$or'] = params;
     }
-    //$or: [{ '_id': objId }, { 'name': param }, { 'nickname': param }]
-    mongoose.model('Tickets').find({ $or: [params] }, function (err, orders) {
+    searchQry['$and'] = [{ CreatedBy: "1" }];
+    // $or: params, $and: [{ CreatedBy: "1" }]
+    mongoose.model('Tickets').find(searchQry).sort({ CreatedOn: 'desc' }).exec(function (err, orders) {
         if (err) {
             console.log(err);
             return res.status(500).send();

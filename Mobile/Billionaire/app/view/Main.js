@@ -1,7 +1,7 @@
 Ext.define('Billionaire.view.Main', {
     extend: 'Ext.TabPanel',
     xtype: 'mainForm',
-    requires: ['Ext.form.FieldSet', 'Billionaire.view.OrderForm'],
+    requires: ['Ext.form.FieldSet', 'Billionaire.view.OrderForm', 'Billionaire.view.OrdersReport'],
     config: {
         tabBarPosition: 'bottom',
         items: [{
@@ -22,17 +22,19 @@ Ext.define('Billionaire.view.Main', {
                 xtype: 'orderForm'
             }]
         }, {
-            title: 'Result',
-            iconCls: 'action',
-            items: [
-                {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: 'Billionaire Result'
-                }
-            ]
-        }, {
             title: 'Reports',
+            iconCls: 'action',
+            layout: 'fit',
+            items: [{
+                docked: 'top',
+                xtype: 'titlebar',
+                title: 'Report'
+
+            }, {
+                xtype: 'ordersReport'
+            }]
+        }, {
+            title: 'Result',
             iconCls: 'user',
             items: [
                 {
