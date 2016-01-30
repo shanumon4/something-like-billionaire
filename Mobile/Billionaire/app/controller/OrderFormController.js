@@ -101,7 +101,7 @@
                              renderTo: Ext.getCmp('orderForm').id,
                              confTitle: 1,
                              phoneNumber: vals.PhoneNumber,
-                             bodyMsg: '#' + vals.FourDNumber[0] + '\n' + '#' + vals.FourDNumber[1] + '\n\n' + 'C: ' + '\n\n' + 'T: 34' + '\n\n Ph:' + vals.PhoneNumber,
+                             bodyMsg: '#' + vals.FourDNumber[0] + '\n' + '#' + vals.FourDNumber[1] + '\n\n' + 'C: ' + '\n\n' + 'T: 34' + '\n\n Ph:' + vals.PhoneNumber
                          });
                          conf.updatePopup(conf);
                          conf.show();

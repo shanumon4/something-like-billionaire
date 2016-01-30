@@ -55,7 +55,7 @@ Ext.application({
             id: 'ajaxMask',
             message: 'Loading...',
             indicator: true,
-            hidden: true,
+            hidden: true
         });
 
 

@@ -2,7 +2,7 @@
     extend: 'Ext.form.FormPanel',
     xtype: 'orderForm',
     id:'orderForm',
-    requires: ['Ext.form.FieldSet',],
+    requires: ['Ext.form.FieldSet'],
     config: {
         control: {
             'textfield': {

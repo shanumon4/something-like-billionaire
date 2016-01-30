@@ -30,24 +30,30 @@
 
     },
     initialize: function () {
-        this.callParent();
-        if (Billionaire.util.UserId.isSuperAdmin == true) {
-            var searchBar = this.down('container[action=searchBar]');
-            searchBar.add({
-                xtype: 'selectfield',
-                name: 'searchByName',
-                id: 'ordersReportSearchByNameField',
-                label: 'User',
-                store: 'Users',
-                displayField: 'Username',
-                valueField: '_id'
-                //visible: ,
-                //options: [
-                //    { text: 'First Option', value: 'first' },
-                //    { text: 'Second Option', value: 'second' },
-                //    { text: 'Third Option', value: 'third' }
-                //]
-            });
+        try {
+            this.callParent();
+            if (Billionaire.util.UserId.isSuperAdmin === true) {
+                var searchBar = this.down('container[action=searchBar]');
+                searchBar.add({
+                    xtype: 'selectfield',
+                    name: 'searchByName',
+                    id: 'ordersReportSearchByNameField',
+                    label: 'User',
+                    store: 'Users',
+                    displayField: 'Username',
+                    valueField: '_id',
+                    usePicker: false
+                    //visible: ,
+                    //options: [
+                    //    { text: 'First Option', value: 'first' },
+                    //    { text: 'Second Option', value: 'second' },
+                    //    { text: 'Third Option', value: 'third' }
+                    //]
+                });
+            }
+        }
+        catch (err) {
+            Ext.Msg.alert('Error', err.message);
         }
     }
 });
