@@ -44,7 +44,8 @@
                 action: '4dfield',
                 maxLength: 14,
                 minLength: 4,
-                component: { type: 'tel' }
+                component: { type: 'tel' }, placeHolder: '#### - ### - ###',
+                clearIcon: false
             };
         var newField = fs.insert(fs.items.length - 2, fourdfield);
         newField.focus();
@@ -70,6 +71,7 @@
             var formValuesArr = all4Darray.map(function (items) {
                 items['PhoneNumber'] = vals.PhoneNumber;
                 items['Company'] = companyArray;
+                items['ContestDate'] = vals.ContestDate;
 
                 return items;
             });
@@ -130,6 +132,7 @@
             Ext.Msg.alert('No 4d provided!', 'Please enter atleast one 4D');
             return false;
         }
+        if (Ext.isString(values.FourDNumber)) values.FourDNumber = values.FourDNumber.split();
         var formValuesArr = values.FourDNumber.map(function (items) {
             var newObj = {};
             newObj['FourDNumber'] = items;
@@ -153,7 +156,6 @@
                 //break;
             }
         }
-
         if (!isValid) {
             for (var j = 0; j < errors.length; j++) {
                 for (var i = 0; i < errors[j].items.length; i++) {

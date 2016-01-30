@@ -3,7 +3,7 @@
 
     config: {
         // Decomment to use the remote server config
-        baseUrl: 'http://192.168.0.100:3030'
+        baseUrl: 'http://localhost:3021'
 
 
         // Decomment to use the local server config

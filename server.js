@@ -3,9 +3,9 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ var Db = require('mongodb').Db,
     assert = require('assert'),
     fs = require('fs');
 
-var server = app.listen(3030, function () {
+var server = app.listen(3021, function () {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -71,9 +71,41 @@ app.post('/addTicket', function (req, res) {
     res.header('Access-Control-Allow-Origin', "*");
     console.log('Add ticket request made');
     console.log(req.body['formData']);
+
     var Tickets = mongoose.model('Tickets'),
         data = JSON.parse(req.body['formData']);
-    
+   /* db.getCollection('tickets').find({
+        $and: [{ "FourDNumber": { $in: ["3333", "9060", "9061", "4562"] } },
+            { "PhoneNumber": "586431" },
+            {
+                "ModifiedOn": {
+                    "$gte" : ISODate("2016-01-17T00:00:00Z"), 
+                    "$lt" : ISODate("2016-01-19T00:00:00Z")
+                }
+            }]
+    })*/
+  /*  var fourDs = data.map(function (item) {
+        return item.FourDNumber.toString();
+    });
+    Tickets.find({
+        $and: [{ "FourDNumber": { $in: fourDs } }, { "PhoneNumber": data[0].PhoneNumber }, {
+                "ModifiedOn": {
+                    "$gte" : new Date(new Date().toLocaleDateString()), 
+                    "$lt" : new Date(new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString())
+                }
+            }]
+    }, function (err, docs) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+        else {
+            if (docs.length > 0) {
+                console.log('already exists:');
+                return res.status(200).send(JSON.stringify(docs));
+            }
+        }
+    });*/
     
     var total = data.length, result = [];
 
@@ -89,6 +121,7 @@ app.post('/addTicket', function (req, res) {
             Company: doc["Company"],
             PhoneNumber: doc["PhoneNumber"],
             SMSStatus: 0,//req.body["SMSStatus"],
+            ContestDate: doc["ContestDate"],
             CreatedOn: Date.now(),
             CreatedBy: 1,//req.body["CreatedBy"],
             ModifiedOn: Date.now(),
@@ -113,8 +146,8 @@ app.post('/addTicket', function (req, res) {
     }
 
     saveAll();
-
-
+    
+    
     //console.log(ticket);
     //ticket.save(function (err, savedUser) {
     //    if (err) {
@@ -140,7 +173,7 @@ app.get('/lsorders', function (req, res) {
     }
     searchQry['$and'] = [{ CreatedBy: "1" }];
     // $or: params, $and: [{ CreatedBy: "1" }]
-    mongoose.model('Tickets').find(searchQry).sort({ CreatedOn: 'desc' }).exec(function (err, orders) {
+    mongoose.model('Tickets').find(searchQry).sort({ ContestDate: 'desc' }).exec(function (err, orders) {
         if (err) {
             console.log(err);
             return res.status(500).send();

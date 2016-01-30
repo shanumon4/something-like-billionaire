@@ -12,7 +12,7 @@
         },
         grouper: {
             groupFn: function (record) {
-                return record.get('CreatedOn').toDateString();
+                return record.get('ContestDate').toDateString();
             }
         },
     }

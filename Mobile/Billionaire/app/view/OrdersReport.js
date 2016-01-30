@@ -12,7 +12,7 @@
 			id:'ordersReportSearchField'
         }, {
             xtype: 'list',
-            itemTpl: "<div>{FourDNumber}<span style='float:right;'>{PhoneNumber}</span></div>",
+            itemTpl: "<div><b>4D :</b> {FourDNumber}</div><div>Ph No :{PhoneNumber}</div>",
             emptyText: 'No records found!',
             id: 'ordersReportList',
             height: '100%',
