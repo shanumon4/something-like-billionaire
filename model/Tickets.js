@@ -11,9 +11,9 @@ var ticketsSchema = new Schema({
     SMSStatus: Number,
     ContestDate: { type: Date },
     CreatedOn: { type: Date },
-    CreatedBy: Number,
+    CreatedBy: String,
     ModifiedOn: { type: Date },
-    ModifiedBy: Number,
+    ModifiedBy: String,
     IsDeleted: Number
    });
 

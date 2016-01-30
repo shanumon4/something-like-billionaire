@@ -36,8 +36,12 @@ Ext.define('Billionaire.controller.LoginController', {
     },
 
     onLoginComplete: function (form, result, e, eOpts) {
+        
         if (result['Status'] == 'success') {
             if (!this.getOrderForm()) {
+                var resultData = JSON.parse(result.data);
+                delete resultData['Password'];
+                Billionaire.util.UserId = resultData;
                 Ext.Viewport.add(Ext.create('Billionaire.view.Main'));
                 Ext.Viewport.setActiveItem(1);
             }

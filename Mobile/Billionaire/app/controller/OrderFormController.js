@@ -72,6 +72,8 @@
                 items['PhoneNumber'] = vals.PhoneNumber;
                 items['Company'] = companyArray;
                 items['ContestDate'] = vals.ContestDate;
+                items['CreatedBy'] = Billionaire.util.UserId._id;
+                items['ModifiedBy'] = Billionaire.util.UserId._id;
 
                 return items;
             });

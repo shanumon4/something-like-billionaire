@@ -23,7 +23,7 @@ Ext.application({
     ],
     controllers:['LoginController','OrderFormController','OrderReportController'],
     models: ['Tickets'],
-    stores:['Orders'],
+    stores:['Orders','Users'],
     utils:['Config'],
     icon: {
         '57': 'resources/icons/Icon.png',

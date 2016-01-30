@@ -63,7 +63,7 @@ app.post('/login', function (req, res) {
         if (!user) {
             return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Incorrect Username or Password", "success": true }));
         }
-        return res.status(200).send(JSON.stringify({ Status: "success", "success": true }));
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: JSON.stringify(user) }));
     });
 });
 
@@ -123,9 +123,9 @@ app.post('/addTicket', function (req, res) {
             SMSStatus: 0,//req.body["SMSStatus"],
             ContestDate: doc["ContestDate"],
             CreatedOn: Date.now(),
-            CreatedBy: 1,//req.body["CreatedBy"],
+            CreatedBy: doc["CreatedBy"],//req.body["CreatedBy"],
             ModifiedOn: Date.now(),
-            ModifiedBy: 1,//req.body["ModifiedOn"],
+            ModifiedBy: doc["ModifiedBy"],//req.body["ModifiedOn"],
             IsDeleted: 0
         });
         console.log(ticket);
@@ -171,7 +171,13 @@ app.get('/lsorders', function (req, res) {
 
         searchQry['$or'] = params;
     }
-    searchQry['$and'] = [{ CreatedBy: "1" }];
+    
+    if (req.query['IsSuperAdmin'] == false)
+        searchQry['$and'] = [{ CreatedBy: req.query['UserId'] }];
+    
+    if (req.query['ByUsernameValue']) { 
+        searchQry['$and'] = [{ CreatedBy: req.query['ByUsernameValue'] }];
+    }
     // $or: params, $and: [{ CreatedBy: "1" }]
     mongoose.model('Tickets').find(searchQry).sort({ ContestDate: 'desc' }).exec(function (err, orders) {
         if (err) {
@@ -183,5 +189,27 @@ app.get('/lsorders', function (req, res) {
         }
         
         return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: orders }));
+    });
+});
+
+
+app.get('/lsusers', function (req, res) {
+    console.log('/lsusers req made');
+    res.header('Access-Control-Allow-Origin', "*");
+    var params = [];
+   
+    
+    
+    // $or: params, $and: [{ CreatedBy: "1" }]
+    mongoose.model('Users').find({}, function (err, users) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        }
+        if (!users) {
+            return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Failed to load", "success": true }));
+        }
+        
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: users }));
     });
 });
