@@ -15,9 +15,40 @@
             },
             'ordersReport selectfield[name=searchByName]': {
                 change:'onSearchByUser'
+            },
+            '#ordersReport': {
+                initialize: 'onRenderOrderReport'
             }
         }
     },
+
+    onRenderOrderReport: function (e, w) {
+        try {
+            if (Billionaire.util.UserId.isSuperAdmin === true) {
+                var searchBar = e.down('container[action=searchBar]');
+                searchBar.add({
+                    xtype: 'selectfield',
+                    name: 'searchByName',
+                    id: 'ordersReportSearchByNameField',
+                    label: 'User',
+                    store: 'Users',
+                    displayField: 'Username',
+                    valueField: '_id',
+                    usePicker: false
+                    //visible: ,
+                    //options: [
+                    //    { text: 'First Option', value: 'first' },
+                    //    { text: 'Second Option', value: 'second' },
+                    //    { text: 'Third Option', value: 'third' }
+                    //]
+                });
+            }
+        }
+        catch (err) {
+            Ext.Msg.alert('Error', err.message);
+        }
+    },
+
     onChangeTab: function (t, tab, newTab, d, e) {
         if (tab._title == "Reports") {
 			try{
