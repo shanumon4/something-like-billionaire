@@ -3,9 +3,9 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -172,7 +172,7 @@ app.get('/lsorders', function (req, res) {
         searchQry['$or'] = params;
     }
     
-    if (req.query['IsSuperAdmin'] == false)
+    if (req.query['IsSuperAdmin'] == "false")
         searchQry['$and'] = [{ CreatedBy: req.query['UserId'] }];
     
     if (req.query['ByUsernameValue']) { 

@@ -8,7 +8,7 @@
     config: {
         items: [{
             xtype: 'container', docked: 'top',
-            action:'searchBar',
+            action: 'searchBar',
             layout: 'hbox',
             items: [{
                 xtype: 'searchfield',
@@ -29,7 +29,8 @@
         }]
 
     },
-    initComponent: function () {
+    initialize: function () {
+        this.callParent();
         if (Billionaire.util.UserId.isSuperAdmin == true) {
             var searchBar = this.down('container[action=searchBar]');
             searchBar.add({
@@ -39,7 +40,7 @@
                 label: 'User',
                 store: 'Users',
                 displayField: 'Username',
-                valueField:'_id'
+                valueField: '_id'
                 //visible: ,
                 //options: [
                 //    { text: 'First Option', value: 'first' },
@@ -48,6 +49,5 @@
                 //]
             });
         }
-        this.callParent(arguments);
     }
 });

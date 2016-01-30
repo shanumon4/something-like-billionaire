@@ -10,11 +10,12 @@
                 rootProperty: "data"
             }
         },
-        autoLoad:true
-    },
-    listeners: {
-        load: function (e,r,w,t) {
-            e.insert(0, { _id: '', Username: 'All' });
+        autoLoad: true,
+        listeners: {
+            load: function (e, r, w, t) {
+                e.insert(0, { _id: '', Username: 'All' });
+            }
         }
     }
+
 });

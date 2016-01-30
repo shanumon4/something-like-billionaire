@@ -14,6 +14,6 @@
             groupFn: function (record) {
                 return record.get('ContestDate').toDateString();
             }
-        },
+        }
     }
 });
