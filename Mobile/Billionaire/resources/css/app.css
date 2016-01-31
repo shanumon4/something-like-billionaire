@@ -7744,4 +7744,11 @@ body.x-desktop {
     background-repeat:no-repeat; 
     background-position:center center;
 }
-
+.orderReport_userLabel {
+    background-image: url('../icons/user.png')!important;
+    height: 29px!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 11px;
+    background-size: contain;
+}

@@ -9,8 +9,12 @@
 	"mongodb":"latest"
   },
   "description": "Billionaire Application",
-  "main": "app.js",
+  "main": "server.js",
   "devDependencies": {},
   "author": "None",
-  "license": "ISC"
+  "license": "ISC",
+   "scripts": {
+    "install-windows-service": "winser -i",
+    "uninstall-windows-service": "winser -r"
+  }
 }

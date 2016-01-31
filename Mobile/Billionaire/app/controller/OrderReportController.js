@@ -30,11 +30,15 @@
                     xtype: 'selectfield',
                     name: 'searchByName',
                     id: 'ordersReportSearchByNameField',
-                    label: 'User',
+                    labelCls: 'orderReport_userLabel',
+                    label: '-',
+                    labelWidth:28,
                     store: 'Users',
                     displayField: 'Username',
                     valueField: '_id',
-                    usePicker: false
+                    usePicker: false,
+                    flex: 1
+                    //styleHtmlContent:true
                     //visible: ,
                     //options: [
                     //    { text: 'First Option', value: 'first' },
