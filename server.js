@@ -3,9 +3,9 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

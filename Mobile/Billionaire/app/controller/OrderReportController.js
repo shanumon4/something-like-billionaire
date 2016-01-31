@@ -16,7 +16,7 @@
             'ordersReport selectfield[name=searchByName]': {
                 change:'onSearchByUser'
             },
-            '#ordersReport': {
+            'ordersReport': {
                 initialize: 'onRenderOrderReport'
             }
         }
