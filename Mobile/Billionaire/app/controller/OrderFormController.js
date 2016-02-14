@@ -45,7 +45,18 @@
                 maxLength: 14,
                 minLength: 4,
                 component: { type: 'tel' }, placeHolder: '#### - ### - ###',
-                clearIcon: false
+                clearIcon: false, 
+                listeners: {
+                    painted: function (er, e, w, q) {
+                        var toggleField = new Ext.field.Toggle({
+                            action: 'iBoxToggle',
+                            name: 'IsIBox',
+                            label: 'i-Box',
+                            labelCls: 'iBoxLabel'
+                        });
+                        er.dom.appendChild(toggleField.element.dom);
+                    }
+                }
             };
         var newField = fs.insert(fs.items.length - 2, fourdfield);
         newField.focus();
@@ -57,15 +68,20 @@
         var vals = Ext.getCmp('orderForm').getValues();
         var isValidTickets = this.validateTickets(vals) ? true : false;
         if (isValidTickets == true) {
-            var all4Darray = vals.FourDNumber.map(function (obj) {
+            var fourdFlds = Ext.getCmp('orderForm').query('field[action=4dfield]'),
+                all4Darray = [];
+            Ext.each(fourdFlds, function (fld) {
+                
                 var newObj = {};
-                var splittedNo = obj.split('-');
+                var splittedNo = fld.getValue().split('-');
                 newObj['FourDNumber'] = eval(Ext.String.trim(splittedNo[0]));
                 newObj['Sub1'] = eval(Ext.String.trim(splittedNo[1]));
                 newObj['Sub2'] = eval(Ext.String.trim(splittedNo[2]));
+                newObj['IsIBox'] = (Ext.getCmp(fld.id + '_toggle').getValue() == 1) ? true : false;
 
-                return newObj;
+                all4Darray.push(newObj);
             });
+
             var companyArray = this.getCompaniesFromValues(vals);
 
             var formValuesArr = all4Darray.map(function (items) {
@@ -78,7 +94,6 @@
                 return items;
             });
 
-           
          Ext.Ajax.request({
              url: Billionaire.util.Config.getBaseUrl() + '/addTicket',
              method: 'POST',
@@ -135,6 +150,7 @@
             return false;
         }
         if (Ext.isString(values.FourDNumber)) values.FourDNumber = values.FourDNumber.split();
+       
         var formValuesArr = values.FourDNumber.map(function (items) {
             var newObj = {};
             newObj['FourDNumber'] = items;
@@ -143,6 +159,7 @@
 
             return newObj;
         });
+        
         if (companyArray.length == 0) {
             Ext.Msg.alert('Invalid Company!', 'Please select atleast one company');
             return false;

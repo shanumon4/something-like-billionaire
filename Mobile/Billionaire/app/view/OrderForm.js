@@ -2,7 +2,7 @@
     extend: 'Ext.form.FormPanel',
     xtype: 'orderForm',
     id:'orderForm',
-    requires: ['Ext.form.FieldSet'],
+    requires: ['Ext.form.FieldSet','Ext.field.Toggle'],
     config: {
         control: {
             'textfield': {
@@ -26,7 +26,19 @@
                         clearIcon: false,
                         minLength: 4,
                         placeHolder: '#### - ### - ###',
-                        component: { type: 'tel' }
+                        component: { type: 'tel' },
+                        listeners: {
+                            painted: function (er, e, w, q) {
+                                var toggleField = new Ext.field.Toggle({
+                                    action: 'iBoxToggle',
+                                    name: 'IsIBox',
+                                    label: 'i-Box', styleHtmlContent: true,
+                                    labelCls: 'iBoxLabel',
+                                    id: er.id + '_toggle'
+                                });
+                                er.dom.appendChild(toggleField.element.dom);
+                            }
+                        }
                     },
                     {
                         xtype: 'textfield',
@@ -37,7 +49,18 @@
                         clearIcon: false,
                         minLength: 4,
                         placeHolder: '#### - ### - ###',
-                        component: { type: 'tel' }
+                        component: { type: 'tel' }, listeners: {
+                            painted: function (er, e, w, q) {
+                                var toggleField = new Ext.field.Toggle({
+                                    action: 'iBoxToggle',
+                                    name: 'IsIBox',
+                                    label: 'i-Box',
+                                    labelCls: 'iBoxLabel',
+                                    id: er.id + '_toggle'
+                                });
+                                er.dom.appendChild(toggleField.element.dom);
+                            }
+                        }
                     }, {
                         xtype: 'button',
                         iconCls: 'add',

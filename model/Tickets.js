@@ -8,6 +8,7 @@ var ticketsSchema = new Schema({
     Sub2: String,
     Company: Array,
     PhoneNumber: String,
+    IsIBox: Boolean,
     SMSStatus: Number,
     ContestDate: { type: Date },
     CreatedOn: { type: Date },
@@ -15,7 +16,7 @@ var ticketsSchema = new Schema({
     ModifiedOn: { type: Date },
     ModifiedBy: String,
     IsDeleted: Number
-   });
+});
 
 var Tickets = mongoose.model('Tickets', ticketsSchema);
 module.exports = Tickets;

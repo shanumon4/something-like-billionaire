@@ -120,6 +120,7 @@ app.post('/addTicket', function (req, res) {
             Sub2: doc["Sub2"],
             Company: doc["Company"],
             PhoneNumber: doc["PhoneNumber"],
+            IsIBox: doc["IsIBox"],
             SMSStatus: 0,//req.body["SMSStatus"],
             ContestDate: doc["ContestDate"],
             CreatedOn: Date.now(),

@@ -7752,3 +7752,16 @@ body.x-desktop {
     margin-top: 11px;
     background-size: contain;
 }
+.iBoxLabel {
+    width: 40% !important;
+    padding: 2px;
+    height: 20px;
+    margin-top: 15px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.iBoxLabel span {
+    font-size: 10px;
+    text-align: center;
+}
