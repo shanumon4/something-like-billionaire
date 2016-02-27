@@ -7746,10 +7746,13 @@ body.x-desktop {
 }
 .orderReport_userLabel {
     background-image: url('../icons/user.png')!important;
-    height: 29px!important;
+    height: 36px!important;
+    width:30px;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 11px;
+    background-color:white;
+    border:0px;
+    border-radius:0px;
     background-size: contain;
 }
 .iBoxLabel {
@@ -7764,4 +7767,14 @@ body.x-desktop {
 .iBoxLabel span {
     font-size: 10px;
     text-align: center;
+}
+.orderReport_dateLabel {
+    background-image: url('../icons/calendar2.png')!important;
+    height: 18px!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 11px;
+    background-size: contain;
+    border-radius:0px;
+    background-color: white;
 }

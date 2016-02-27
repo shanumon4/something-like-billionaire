@@ -1,7 +1,12 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-
+//var expressSession = require('express-session');
+//var cookieParser = require('cookie-parser');
 var app = express();
+
+
+//app.use(cookieParser());
+//app.use(expressSession({ secret: 'see', cookie: { maxAge: 6000 } }));
 
 app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
@@ -20,7 +25,7 @@ var Db = require('mongodb').Db,
     assert = require('assert'),
     fs = require('fs');
 
-var server = app.listen(3021, function () {
+var server = app.listen(3022, function () {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -46,7 +51,7 @@ app.use(function (req, res, next) {
 
 app.post('/login', function (req, res) {
     res.header('Access-Control-Allow-Origin', "*");
-
+    
     var username = req.body["username"];
     var password = req.body["password"];
     console.log([
@@ -55,6 +60,8 @@ app.post('/login', function (req, res) {
         'Device UUID: ' + req.body["Device_UUID"],
         'Username: ' + username
     ].join('\n'));
+    
+
     mongoose.model('Users').findOne({ Username: username, Password: password }, function (err, user) {
         if (err) {
             console.log(err);
@@ -63,6 +70,9 @@ app.post('/login', function (req, res) {
         if (!user) {
             return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Incorrect Username or Password", "success": true }));
         }
+        //req.session.isSuperAdmin = user._doc.isSuperAdmin;
+        //req.session.userID = user._id;
+        //req.session.username = user._doc.Username;
         return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: JSON.stringify(user) }));
     });
 });
@@ -112,7 +122,7 @@ app.post('/addTicket', function (req, res) {
     function saveAll() {
         
         var doc = data.pop();
-
+        
         var ticket = new Tickets({
             Id: 1111,//req.body["Id"],
             FourDNumber: doc["FourDNumber"],
@@ -173,11 +183,27 @@ app.get('/lsorders', function (req, res) {
         searchQry['$or'] = params;
     }
     
-    if (req.query['IsSuperAdmin'] == "false")
-        searchQry['$and'] = [{ CreatedBy: req.query['UserId'] }];
+    if (req.query['IsSuperAdmin'] == "false") {
+        if (!searchQry['$and'])
+            searchQry['$and'] = [];
+        searchQry['$and'].push({ CreatedBy: req.query['UserId'] });
+    }
     
-    if (req.query['ByUsernameValue']) { 
-        searchQry['$and'] = [{ CreatedBy: req.query['ByUsernameValue'] }];
+    if (req.query['ByUsernameValue']) {
+        if (!searchQry['$and'])
+            searchQry['$and'] = [];
+        searchQry['$and'].push({ CreatedBy: req.query['ByUsernameValue'] });
+    }
+    
+    if (req.query['ByContestDate']) {
+        if (!searchQry['$and'])
+            searchQry['$and'] = [];
+        searchQry['$and'].push({
+            ContestDate: {
+                "$gte" : new Date(req.query['ByContestDate']).toISOString(),
+                "$lt" : new Date(new Date(req.query['ByContestDate']).setDate(new Date(req.query['ByContestDate']).getDate() + 1)).toISOString()
+            }
+        });
     }
     // $or: params, $and: [{ CreatedBy: "1" }]
     mongoose.model('Tickets').find(searchQry).sort({ ContestDate: 'desc' }).exec(function (err, orders) {

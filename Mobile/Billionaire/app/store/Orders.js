@@ -13,7 +13,10 @@
         grouper: {
             groupFn: function (record) {
                 return record.get('ContestDate').toDateString();
-            }
+            },
+            sortProperty: 'ContestDate',
+
+            direction: 'DESC'
         }
     }
 });

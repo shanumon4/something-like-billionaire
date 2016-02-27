@@ -26,11 +26,6 @@ Ext.define('Billionaire.view.Main', {
             iconCls: 'action',
             layout: 'fit',
             items: [{
-                docked: 'top',
-                xtype: 'titlebar',
-                title: 'Report'
-
-            }, {
                 xtype: 'ordersReport'
             }]
         }, {

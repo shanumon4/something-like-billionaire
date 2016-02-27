@@ -28,15 +28,16 @@
                         placeHolder: '#### - ### - ###',
                         component: { type: 'tel' },
                         listeners: {
-                            painted: function (er, e, w, q) {
+                            initialize: function (er, e, w, q) {
                                 var toggleField = new Ext.field.Toggle({
                                     action: 'iBoxToggle',
                                     name: 'IsIBox',
-                                    label: 'i-Box', styleHtmlContent: true,
+                                    label: 'i-Box', 
                                     labelCls: 'iBoxLabel',
                                     id: er.id + '_toggle'
                                 });
-                                er.dom.appendChild(toggleField.element.dom);
+                                
+                                er.element.dom.appendChild(toggleField.element.dom);
                             }
                         }
                     },
@@ -50,7 +51,7 @@
                         minLength: 4,
                         placeHolder: '#### - ### - ###',
                         component: { type: 'tel' }, listeners: {
-                            painted: function (er, e, w, q) {
+                            initialize: function (er, e, w, q) {
                                 var toggleField = new Ext.field.Toggle({
                                     action: 'iBoxToggle',
                                     name: 'IsIBox',
@@ -58,7 +59,7 @@
                                     labelCls: 'iBoxLabel',
                                     id: er.id + '_toggle'
                                 });
-                                er.dom.appendChild(toggleField.element.dom);
+                                er.element.dom.appendChild(toggleField.element.dom);
                             }
                         }
                     }, {

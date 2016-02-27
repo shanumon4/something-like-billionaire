@@ -9,9 +9,6 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.shanu.Billionaire"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.shanu.Billionaire"
         }
     },
     "dependent_plugins": {}

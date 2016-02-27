@@ -2,18 +2,19 @@
   "name": "billionaire",
   "version": "0.0.1",
   "private": true,
-  
   "dependencies": {
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
     "express": "~4.13.1",
-	"mongodb":"latest"
+    "express-session": "~1.0.2",
+    "mongodb": "latest"
   },
   "description": "Billionaire Application",
   "main": "server.js",
   "devDependencies": {},
   "author": "None",
   "license": "ISC",
-   "scripts": {
+  "scripts": {
     "install-windows-service": "winser -i",
     "uninstall-windows-service": "winser -r"
   }

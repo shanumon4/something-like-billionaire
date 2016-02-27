@@ -17,6 +17,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Content Include="package.json" />
+    <Compile Include="Mobile\Billionaire\app\controller\OrderReportController.js" />
     <Compile Include="Mobile\Billionaire\app\view\OrdersReport.js" />
     <Compile Include="server.js" />
     <Content Include="DB\log.txt" />
