@@ -8,9 +8,9 @@ var app = express();
 //app.use(cookieParser());
 //app.use(expressSession({ secret: 'see', cookie: { maxAge: 6000 } }));
 
-app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
