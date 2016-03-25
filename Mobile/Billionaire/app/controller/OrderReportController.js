@@ -23,6 +23,9 @@
             },
             'ordersReport': {
                 initialize: 'onRenderOrderReport'
+            },
+            'ordersReport button[action=exportOrder]': {
+                tap: 'onExportOrderReport'
             }
         }
     },
@@ -88,5 +91,30 @@
             'ByContestDate': this.getOrderSearchDate().getValue() ? this.getOrderSearchDate().getValue().toISOString() : ''
         });
         orderlist.load();
+    },
+
+    onExportOrderReport: function (btn) {
+        debugger;
+        var exportExp = this.getOrdersReportList().getStore(),
+            extraParams = exportExp.getProxy();
+        
+        extraParams.setExtraParams({
+            'isExport': true
+        });
+
+        Ext.Ajax.request({
+            url: Billionaire.util.Config.getBaseUrl() + '/lsorders',
+            method: 'GET',
+            params: exportExp.getProxy().getExtraParams(),
+            scope: this,
+            callback: function (options, success, response) {
+                if (success) {
+                    window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?isExport=true';
+                }
+                else { 
+                    debugger;
+                }
+            }
+        });
     }
 });

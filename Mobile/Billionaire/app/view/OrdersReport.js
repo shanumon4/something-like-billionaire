@@ -31,6 +31,11 @@
                                 title: 'Contest Date'
                             }
                         }
+                    }, {
+                        xtype: 'button', flex: .3,
+                        styleHtmlContent: true,
+                        action:'exportOrder',
+                        cls: 'orderReport_downloadLabel'
                     }]
             }, {
                 xtype: 'list',

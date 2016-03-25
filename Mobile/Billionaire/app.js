@@ -54,7 +54,7 @@ Ext.application({
             callback: function (options, success, response) {
                 var jsondata = JSON.parse(response.responseText);
                 if (jsondata.success) {
-                    Billionaire.util.UserId = jsondata.data;
+                    Billionaire.util.UserId = JSON.parse(jsondata.data);
                     Ext.Viewport.add(Ext.create('Billionaire.view.Main'));
                 }
                 else

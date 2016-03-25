@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
-var expressSession = require('express-session')
+var expressSession = require('express-session');
+var json2xls = require('json2xls');
 var app = express();
 
 
@@ -13,7 +14,7 @@ app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Bi
 //app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(json2xls.middleware);
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/BillionaireDB');
 //app.get('/', function (req, res) {
@@ -197,11 +198,33 @@ app.get('/lsorders', function (req, res) {
         if (!orders) {
             return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Failed to load", "success": true }));
         }
-        
-        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: orders }));
+        if (req.query['isExport']) {
+            res.header('Content-Type', "application/xlsx");
+            res.header('Content-Disposition', 'attachment');
+            res.xls('11000.xlsx', ordersforExport(orders));
+        }
+        else { 
+            return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: orders }));
+        }
     });
 });
 
+ordersforExport = function (orders) {
+    var jsonData = [];
+    for (var i = 0; i < orders.length; i++) {
+        var rec = {};
+        rec['FourDNumber'] = orders[i]['FourDNumber'] +'-'+ orders[i]['Sub1'] + '-' + orders[i]['Sub2'];
+        rec['Company'] = orders[i]['Company'].join(',');
+        rec['Total'] = parseInt(orders[i]['Sub1']) + parseInt(orders[i]['Sub2']);
+        rec['Phone Number'] = orders[i]['PhoneNumber'];
+        rec['Contest Date'] = orders[i]['ContestDate'];
+        rec['Record Created On'] = orders[i]['CreatedOn'];
+        rec['Modified By'] = orders[i]["ModifiedBy"];
+        jsonData.push(rec);
+    }
+
+    return jsonData;
+}
 
 app.get('/lsusers', function (req, res) {
     console.log('/lsusers req made');

@@ -75,13 +75,15 @@
                 Ext.each(fourdFlds, function (fld) {
                     
                     var newObj = {};
-                    var splittedNo = fld.getValue().split('-');
-                    newObj['FourDNumber'] = eval(Ext.String.trim(splittedNo[0]));
-                    newObj['Sub1'] = eval(Ext.String.trim(splittedNo[1]));
-                    newObj['Sub2'] = eval(Ext.String.trim(splittedNo[2]));
-                    newObj['IsIBox'] = (Ext.getCmp(fld.id + '_toggle').getValue() == 1) ? true : false;
-                    
-                    all4Darray.push(newObj);
+                    if (Ext.String.trim(fld.getValue())) {
+                        var splittedNo = fld.getValue().split('-');
+                        newObj['FourDNumber'] = eval(Ext.String.trim(splittedNo[0]));
+                        newObj['Sub1'] = eval(Ext.String.trim(splittedNo[1]));
+                        newObj['Sub2'] = eval(Ext.String.trim(splittedNo[2]));
+                        newObj['IsIBox'] = (Ext.getCmp(fld.id + '_toggle').getValue() == 1) ? true : false;
+                        
+                        all4Darray.push(newObj);
+                    }
                 });
                 
                 var companyArray = this.getCompaniesFromValues(vals);
