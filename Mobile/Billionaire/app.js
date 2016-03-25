@@ -15,7 +15,7 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox', 'Billionaire.util.Config',
-        'Ext.device.Device'
+        'Ext.device.Device','Ext.field.Toggle'
     ],
 
     views: [
@@ -43,13 +43,24 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
-    launch: function() {
+    launch: function () {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('Billionaire.view.Login'));
-
+        Ext.Ajax.request({
+            url: Billionaire.util.Config.getBaseUrl() + '/getStatus',
+            method: 'GET',
+            callback: function (options, success, response) {
+                var jsondata = JSON.parse(response.responseText);
+                if (jsondata.success) {
+                    Billionaire.util.UserId = jsondata.data;
+                    Ext.Viewport.add(Ext.create('Billionaire.view.Main'));
+                }
+                else
+                    Ext.Viewport.add(Ext.create('Billionaire.view.Login'));
+            }
+        });
         Ext.Viewport.add({
             xtype: 'loadmask',
             id: 'ajaxMask',

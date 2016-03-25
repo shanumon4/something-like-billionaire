@@ -1,16 +1,16 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-//var expressSession = require('express-session');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session')
 var app = express();
 
 
-//app.use(cookieParser());
-//app.use(expressSession({ secret: 'see', cookie: { maxAge: 6000 } }));
+app.use(cookieParser());
+app.use(expressSession({ secret:'Xjns73SJdie', resave: false, saveUninitialized: true, cookie: { secure: false, maxAge: 1800000 } }));
 
-//app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
+app.use(express.static(__dirname + '/Mobile/Billionaire'));//build/production/Billionaire
 
-app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
+//app.use(express.static(__dirname + '/Mobile/Billionaire/build/production/Billionaire'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -25,7 +25,7 @@ var Db = require('mongodb').Db,
     assert = require('assert'),
     fs = require('fs');
 
-var server = app.listen(3022, function () {
+var server = app.listen(3021, function () {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -48,6 +48,19 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get('/', function (req, res) {
+    if (req.session.username) {
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: JSON.stringify(user) }));
+    }
+});
+
+app.get('/getStatus', function (req, res) {
+    if (req.session.username) {
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: JSON.stringify(req.session) }));
+    }
+    else
+        return res.status(200).send(JSON.stringify({ Status: "success", "success": false }));
+});
 
 app.post('/login', function (req, res) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -70,9 +83,9 @@ app.post('/login', function (req, res) {
         if (!user) {
             return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Incorrect Username or Password", "success": true }));
         }
-        //req.session.isSuperAdmin = user._doc.isSuperAdmin;
-        //req.session.userID = user._id;
-        //req.session.username = user._doc.Username;
+        req.session.isSuperAdmin = user._doc.isSuperAdmin;
+        req.session.userID = user._id;
+        req.session.username = user._doc.Username;
         return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: JSON.stringify(user) }));
     });
 });
@@ -84,38 +97,6 @@ app.post('/addTicket', function (req, res) {
 
     var Tickets = mongoose.model('Tickets'),
         data = JSON.parse(req.body['formData']);
-   /* db.getCollection('tickets').find({
-        $and: [{ "FourDNumber": { $in: ["3333", "9060", "9061", "4562"] } },
-            { "PhoneNumber": "586431" },
-            {
-                "ModifiedOn": {
-                    "$gte" : ISODate("2016-01-17T00:00:00Z"), 
-                    "$lt" : ISODate("2016-01-19T00:00:00Z")
-                }
-            }]
-    })*/
-  /*  var fourDs = data.map(function (item) {
-        return item.FourDNumber.toString();
-    });
-    Tickets.find({
-        $and: [{ "FourDNumber": { $in: fourDs } }, { "PhoneNumber": data[0].PhoneNumber }, {
-                "ModifiedOn": {
-                    "$gte" : new Date(new Date().toLocaleDateString()), 
-                    "$lt" : new Date(new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString())
-                }
-            }]
-    }, function (err, docs) {
-        if (err) {
-            console.log(err);
-            return res.status(500).send();
-        }
-        else {
-            if (docs.length > 0) {
-                console.log('already exists:');
-                return res.status(200).send(JSON.stringify(docs));
-            }
-        }
-    });*/
     
     var total = data.length, result = [];
 
@@ -171,6 +152,8 @@ app.post('/addTicket', function (req, res) {
 });
 
 app.get('/lsorders', function (req, res) {
+    if (!req.session.username)
+        return false;
     console.log('/lsorders req made');
     res.header('Access-Control-Allow-Origin', "*");
     var params = [];

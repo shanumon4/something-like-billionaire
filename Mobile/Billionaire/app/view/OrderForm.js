@@ -1,8 +1,8 @@
 ﻿Ext.define('Billionaire.view.OrderForm', {
     extend: 'Ext.form.FormPanel',
     xtype: 'orderForm',
-    id:'orderForm',
-    requires: ['Ext.form.FieldSet','Ext.field.Toggle'],
+    id: 'orderForm',
+    requires: ['Ext.form.FieldSet', 'Ext.field.Toggle'],
     config: {
         control: {
             'textfield': {
@@ -76,7 +76,7 @@
                 styleHtmlContent: true,
                 title: 'Company',
                 layout: 'hbox',
-                action:'companyselector',
+                action: 'companyselector',
                 //margin:'35 0 0 0',
                 defaultType: 'checkboxfield',
                 items: [{
@@ -157,9 +157,9 @@
         if (form.T) cmpnyArray.push(3);
         
         total = total * cmpnyArray.length;
-
+        
         Ext.getCmp('totalDisplay').setHtml('Total Amount: ' + total.toFixed(2));
-
+        
         f.removeCls('textfield_invalid');
         f.up('fieldset').setInstructions('');
     }

@@ -84,7 +84,7 @@
         var orderlist = Ext.getCmp('ordersReportList').getStore();
         orderlist.getProxy().setExtraParams({
             'simpleValue': this.getOrderSearchField().getValue(),
-            'ByUsernameValue' : this.getOrderSearchUser().getValue(),
+            'ByUsernameValue' : this.getOrderSearchUser().getValue()? this.getOrderSearchUser().getValue():'',
             'ByContestDate': this.getOrderSearchDate().getValue() ? this.getOrderSearchDate().getValue().toISOString() : ''
         });
         orderlist.load();

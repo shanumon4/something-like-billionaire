@@ -225,10 +225,6 @@
             });
         
         return four4s.join('\n') + '\n\n' + 'C: ' + cmpny.join(',') + '\n\n' + 'T:' + total + '\n\n Ph:' + jsonData[0].PhoneNumber;
-    },
-
-    init: function () {
-        this.callParent();
     }
 });
     
