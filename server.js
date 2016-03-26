@@ -214,8 +214,10 @@ ordersforExport = function (orders) {
     for (var i = 0; i < orders.length; i++) {
         var rec = {};
         rec['FourDNumber'] = orders[i]['FourDNumber'] +'-'+ orders[i]['Sub1'] + '-' + orders[i]['Sub2'];
-        rec['Company'] = orders[i]['Company'].join(',');
-        rec['Total'] = parseInt(orders[i]['Sub1']) + parseInt(orders[i]['Sub2']);
+        rec['Company'] = orders[i]['Company'].map(function (item) {
+            return item == 1 ? 'M' : item == 2 ?'K' : 'T';
+        }).join(',');
+        rec['Total'] = (parseInt(orders[i]['Sub1']) + parseInt(orders[i]['Sub2'])) * orders[i]['Company'].length;
         rec['Phone Number'] = orders[i]['PhoneNumber'];
         rec['Contest Date'] = orders[i]['ContestDate'];
         rec['Record Created On'] = orders[i]['CreatedOn'];
@@ -225,6 +227,15 @@ ordersforExport = function (orders) {
 
     return jsonData;
 }
+
+getCompaniesFromValues  = function (values) {
+    var cmpnyArray = [];
+    if (values.M) cmpnyArray.push(1);
+    if (values.K) cmpnyArray.push(2);
+    if (values.T) cmpnyArray.push(3);
+    
+    return cmpnyArray;
+},
 
 app.get('/lsusers', function (req, res) {
     console.log('/lsusers req made');

@@ -83,25 +83,26 @@
         }
     },
     
-    onSearchOrder: function () {
+    onSearchOrder: function (loadExplicit) {
         var orderlist = Ext.getCmp('ordersReportList').getStore();
         orderlist.getProxy().setExtraParams({
             'simpleValue': this.getOrderSearchField().getValue(),
             'ByUsernameValue' : this.getOrderSearchUser().getValue()? this.getOrderSearchUser().getValue():'',
             'ByContestDate': this.getOrderSearchDate().getValue() ? this.getOrderSearchDate().getValue().toISOString() : ''
         });
-        orderlist.load();
+        if (loadExplicit)
+            orderlist.load();
     },
 
     onExportOrderReport: function (btn) {
-        debugger;
+        this.onSearchOrder(false);
         var exportExp = this.getOrdersReportList().getStore(),
             extraParams = exportExp.getProxy();
         
-        extraParams.setExtraParams({
-            'isExport': true
-        });
-
+        extraParams.setExtraParam('isExport', true);
+        
+        window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams());
+        /*
         Ext.Ajax.request({
             url: Billionaire.util.Config.getBaseUrl() + '/lsorders',
             method: 'GET',
@@ -109,12 +110,12 @@
             scope: this,
             callback: function (options, success, response) {
                 if (success) {
-                    window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?isExport=true';
+                    window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?isExport=true' ;
                 }
                 else { 
-                    debugger;
+                    Ext.Msg.alert('Export failed');
                 }
             }
-        });
+        }); */
     }
 });
