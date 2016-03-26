@@ -1,6 +1,6 @@
 ﻿Ext.define('Billionaire.controller.OrderReportController', {
     extend: 'Ext.app.Controller',
-
+    
     config: {
         refs: {
             'ordersReportList': 'ordersReport list',
@@ -12,11 +12,11 @@
             'mainForm tabbar': {
                 activetabchange: 'onChangeTab'
             },
-            'ordersReport searchfield[name=searchValue]':{
-                keyup:'onSearchOrder'
+            'ordersReport searchfield[name=searchValue]': {
+                keyup: 'onSearchOrder'
             },
             'ordersReport selectfield[name=searchByName]': {
-                change:'onSearchOrder'
+                change: 'onSearchOrder'
             },
             'ordersReport datepickerfield[name=contestDate]': {
                 change: 'onSearchOrder'
@@ -29,7 +29,7 @@
             }
         }
     },
-
+    
     onRenderOrderReport: function (e, w) {
         try {
             if (Billionaire.util.UserId.isSuperAdmin === true) {
@@ -65,7 +65,7 @@
             Ext.Msg.alert('Error', err.message);
         }
     },
-
+    
     onChangeTab: function (t, tab, newTab, d, e) {
         if (tab._title == "Reports") {
             try {
@@ -93,7 +93,7 @@
         if (loadExplicit)
             orderlist.load();
     },
-
+    
     onExportOrderReport: function (btn) {
         this.onSearchOrder(false);
         var exportExp = this.getOrdersReportList().getStore(),
@@ -101,7 +101,9 @@
         
         extraParams.setExtraParam('isExport', true);
         
-        window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams());
+        downloadFile(Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams()));
+
+       // window.location = ;
         /*
         Ext.Ajax.request({
             url: Billionaire.util.Config.getBaseUrl() + '/lsorders',
@@ -117,5 +119,44 @@
                 }
             }
         }); */
+    },
+    downloadFile: function (url) {
+        var me = this;
+        var fileName = 'Billionaire_Rpr_' + Ext.Date.format(new Date(), 'dmy_h_m_ms'); // Edit this file name
+        var remoteDocUrl = url;
+        // Edit this file url
+        this.getLocalFileEntry(fileName, function (fileEntry) {
+            if (!Ext.isEmpty(fileEntry.download) && Ext.isFunction(fileEntry.download)) {
+                fileEntry.download({
+                    source: remoteDocUrl,
+                    trustAllHosts: true,
+                    options: {},
+                    success: function (fe) {
+                        Ext.Msg.alert(fileName , 'File downloaded successfully.');
+                    },
+                    failure: function (error) {
+                        Ext.Msg.alert('Download fail');
+                    }
+                });
+            } else {
+                console.log('download API not available!!');
+            }
+        }, function (error) { });
+    },
+    getLocalFileEntry: function (fileName, successCbk, failureCbk) {
+        Ext.device.FileSystem.requestFileSystem({
+            type: window.PERSISTENT,
+            size: 0,
+            success: function (fileSystem) {
+                var newFilePath = fileSystem.fs.root.fullPath + '/' + fileName;
+                var fileEntry = new Ext.device.filesystem.FileEntry(newFilePath, fileSystem);
+                successCbk(fileEntry);
+            },
+            failure: function (error) {
+                console.log('Failed to get the filesystem: ' + error);
+                failureCbk(error);
+                Ext.Msg.alert('getLocalFileEntry fail' + error);
+            }
+        });
     }
 });
