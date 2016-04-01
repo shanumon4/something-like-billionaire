@@ -32,9 +32,10 @@
                             }
                         }
                     }, {
-                        xtype: 'button', flex: .3,
+                        xtype: 'button',
                         styleHtmlContent: true,
-                        action:'exportOrder',
+                        action: 'exportOrder',
+                        width:50,
                         cls: 'orderReport_downloadLabel'
                     }]
             }, {
@@ -65,7 +66,7 @@
                 styleHtmlContent: true,
                 grouped: true,
                 ptype: 'gridsummaryrow',
-                summaryType:'sum'
+                summaryType: 'sum'
                 //listeners: {
                 //    refresh: function (list, s, e, w) { 
                 //        if(

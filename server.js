@@ -24,7 +24,10 @@ var Db = require('mongodb').Db,
     MongoClient = require('mongodb').MongoClient,
     Server = require('mongodb').Server,
     assert = require('assert'),
-    fs = require('fs');
+    fs = require('fs'),
+    pdf = require('html-pdf'),
+    path = require('path');
+
 
 var server = app.listen(3021, function () {
   var host = server.address().address;
@@ -166,13 +169,13 @@ app.get('/lsorders', function (req, res) {
 
         searchQry['$or'] = params;
     }
-    
-    if (req.query['IsSuperAdmin'] == "false") {
-        if (!searchQry['$and'])
-            searchQry['$and'] = [];
-        searchQry['$and'].push({ CreatedBy: req.query['UserId'] });
+    if (!req.session.isSuperAdmin) {
+        //if (req.query['IsSuperAdmin'] == "false") {
+            if (!searchQry['$and'])
+                searchQry['$and'] = [];
+            searchQry['$and'].push({ CreatedBy: req.session.userID });
+        //}
     }
-    
     if (req.query['ByUsernameValue']) {
         if (!searchQry['$and'])
             searchQry['$and'] = [];
@@ -199,9 +202,18 @@ app.get('/lsorders', function (req, res) {
             return res.status(200).send(JSON.stringify({ Status: "failure", Message: "Failed to load", "success": true }));
         }
         if (req.query['isExport']) {
-            res.header('Content-Type', "application/xlsx");
+            var html = fs.readFileSync('./report/orderrpt_template.html', 'utf8');
+            var options = { format: 'Letter' };
+            //res.header('Content-Type', "application/xlsx");
+            res.header('Content-Type', "application/pdf");
             res.header('Content-Disposition', 'attachment');
-            res.xls('11000.xlsx', ordersforExport(orders));
+            pdf.create(html, options).toFile('report/businesscard.pdf', function (err, resp) {
+                if (err) return console.log(err);
+                console.log(resp);
+                res.sendFile(path.join(__dirname + '/report/businesscard.pdf'));
+                // { filename: '/app/businesscard.pdf' } 
+            });
+            //res.xls('11000.xlsx', ordersforExport(orders));
         }
         else { 
             return res.status(200).send(JSON.stringify({ Status: "success", "success": true, data: orders }));

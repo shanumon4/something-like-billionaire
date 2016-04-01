@@ -24,7 +24,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="http://192.168.0.102:3021" />
+    <access origin="http://172.16.1.225:3021" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

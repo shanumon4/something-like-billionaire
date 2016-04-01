@@ -87,7 +87,7 @@
         var orderlist = Ext.getCmp('ordersReportList').getStore();
         orderlist.getProxy().setExtraParams({
             'simpleValue': this.getOrderSearchField().getValue(),
-            'ByUsernameValue' : this.getOrderSearchUser().getValue()? this.getOrderSearchUser().getValue():'',
+            'ByUsernameValue' : (Billionaire.util.UserId.isSuperAdmin) ? this.getOrderSearchUser().getValue()? this.getOrderSearchUser().getValue():'':'',
             'ByContestDate': this.getOrderSearchDate().getValue() ? this.getOrderSearchDate().getValue().toISOString() : ''
         });
         if (loadExplicit)
@@ -100,11 +100,13 @@
             extraParams = exportExp.getProxy();
         
         extraParams.setExtraParam('isExport', true);
-        
-        this.downloadFile(Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams()));
+        if (Ext.device.FileSystem)
+            this.downloadFile(Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams()));
+        else
+           // window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams());
 
        // window.location = ;
-        /*
+        
         Ext.Ajax.request({
             url: Billionaire.util.Config.getBaseUrl() + '/lsorders',
             method: 'GET',
@@ -112,36 +114,39 @@
             scope: this,
             callback: function (options, success, response) {
                 if (success) {
-                    window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?isExport=true' ;
+                        window.location = Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams());
                 }
                 else { 
                     Ext.Msg.alert('Export failed');
                 }
             }
-        }); */
+        });
     },
     downloadFile: function (url) {
         var me = this;
         var fileName = 'Billionaire_Rpr_' + Ext.Date.format(new Date(), 'dmy_h_m_ms'); // Edit this file name
         var remoteDocUrl = url;
         // Edit this file url
-        this.getLocalFileEntry(fileName, function (fileEntry) {
-            if (!Ext.isEmpty(fileEntry.download) && Ext.isFunction(fileEntry.download)) {
-                fileEntry.download({
-                    source: remoteDocUrl,
-                    trustAllHosts: true,
-                    options: {},
-                    success: function (fe) {
-                        Ext.Msg.alert(fileName , 'File downloaded successfully.');
-                    },
-                    failure: function (error) {
-                        Ext.Msg.alert('Download fail');
-                    }
-                });
-            } else {
-                console.log('download API not available!!');
-            }
-        }, function (error) { });
+        if (Ext.device.FileSystem) {
+            this.getLocalFileEntry(fileName, function (fileEntry) {
+                if (!Ext.isEmpty(fileEntry.download) && Ext.isFunction(fileEntry.download)) {
+                    fileEntry.download({
+                        source: remoteDocUrl,
+                        trustAllHosts: true,
+                        options: {},
+                        success: function (fe) {
+                            Ext.Msg.alert(fileName , 'File downloaded successfully.');
+                        },
+                        failure: function (error) {
+                            Ext.Msg.alert('Download fail');
+                        }
+                    });
+                } else {
+                    console.log('download API not available!!');
+                }
+            }, function (error) { });
+        }
+       
     },
     getLocalFileEntry: function (fileName, successCbk, failureCbk) {
         Ext.device.FileSystem.requestFileSystem({
