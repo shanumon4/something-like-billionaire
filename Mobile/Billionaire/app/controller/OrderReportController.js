@@ -101,7 +101,7 @@
         
         extraParams.setExtraParam('isExport', true);
         
-        downloadFile(Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams()));
+        this.downloadFile(Billionaire.util.Config.getBaseUrl() + '/lsorders?' + Ext.urlEncode(extraParams.getExtraParams()));
 
        // window.location = ;
         /*

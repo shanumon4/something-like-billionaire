@@ -69,7 +69,19 @@ Ext.application({
             hidden: true
         });
 
-
+Ext.device.FileSystem.requestFileSystem({
+ type: window.PERSISTENT,
+ size: 0,
+ success: function(fileSystem) {
+ 
+ Ext.Msg.alert('File System',fileSystem.fs.root.fullPath);
+ },
+ failure: function(error) {
+ 
+ Ext.Msg.alert('File System path', error);
+ }
+ });
+		
         Ext.Ajax.on('beforerequest', function () { Ext.getCmp('ajaxMask').show(); }, this);
         Ext.Ajax.on('requestcomplete', function () { Ext.getCmp('ajaxMask').hide(); }, this);
         Ext.Ajax.on('requestexception', function () { Ext.getCmp('ajaxMask').hide(); }, this);
